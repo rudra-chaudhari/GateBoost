@@ -1,0 +1,16 @@
+{% extends 'boost/base.html' %}
+
+{% block body_block %}
+
+<div class="container d-flex flex-column align-items-center min-vh-100">
+    <h1 class="text-center my-4">Hello {{ user.first_name }}, check your analytics</h1>
+
+    <div class="border rounded p-4 shadow-sm w-100 w-md-50 text-center">
+        <p class="h5">Total questions attempted: <span class="fw-bold">{{ question_figures.0 }}</span></p>
+        <p class="h5 text-success">Easy questions: <span class="fw-bold">{{ question_figures.1 }}</span></p>
+        <p class="h5 text-warning">Medium questions: <span class="fw-bold">{{ question_figures.2 }}</span></p>
+        <p class="h5 text-danger">Hard questions: <span class="fw-bold">{{ question_figures.3 }}</span></p>
+    </div>
+</div>
+
+{% endblock %}

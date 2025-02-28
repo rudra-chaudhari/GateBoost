@@ -1,0 +1,42 @@
+{% extends 'boost/base.html' %}
+
+{% block title %} Result {% endblock %}
+
+{% block body_block %}
+
+<div class="container d-flex flex-column align-items-center min-vh-100">
+    
+    <div class="text-center my-4">
+        <p class="fs-4 fw-bold text-info">{{ figures.2 }} questions attempted</p>
+    </div>
+
+    <hr class="w-100 w-md-75">
+
+    <div class="text-center my-4">
+        <p class="fs-4 fw-bold text-info">{{ figures.0 }} correct answers</p>
+        {% for question in c_ans_list %}
+            <div class="mb-4 p-3 border rounded shadow-sm w-100 w-md-75">
+                <p class="fs-5 fw-bold text-primary">{{ question.0.question_text }}</p>
+                <p class="text-success">Correct answer given: {{ question.1.answer_text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <hr class="w-100 w-md-75">
+
+    <div class="text-center my-4">
+        <p class="fs-4 fw-bold text-info">{{ figures.1 }} incorrect answers</p>
+        {% for question in ic_ans_list %}
+            <div class="mb-4 p-3 border rounded shadow-sm w-100 w-md-75">
+                <p class="fs-5 fw-bold text-primary">{{ question.0.question_text }}</p>
+                <p class="text-danger">Given answer: {{ question.2.answer_text }}</p>
+                <p class="text-success">Correct answer: {{ question.1.answer_text }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'tests:testhome' %}" class="btn btn-primary my-4">Go to Test Home</a>
+
+</div>
+
+{% endblock %}

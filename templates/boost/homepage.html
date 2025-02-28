@@ -1,0 +1,112 @@
+{% extends 'boost/base.html' %}
+{% load static %}
+
+{% block title %} Homepage {% endblock %}
+
+{% block body_block %}
+
+<!-- {% if not user.is_authenticated %}
+<div class="text-center bg-light py-5">
+    <img src="{% static 'images/logo.jpg' %}" alt="GateBoost Logo" class="img-fluid mb-3" style="max-width:150px;">
+    <h1 class="text-primary">GateBoost</h1>
+    <h4 class="text-muted">UNLOCK YOUR POTENTIAL</h4>
+</div>
+{% endif %} -->
+
+<div class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-left">
+            {% if user.is_authenticated %}
+                <h1 class="fw-bold">Hello {{ user.first_name }}, start your GATE journey today!</h1>
+                <p>Practice on GateBoost to boost your GATE preparation and excel in GATE 2025.</p>
+                <a href="{% url 'tests:testhome' %}" class="btn btn-primary rounded-pill">Practice ></a>
+            {% else %}
+                <h1 class="fw-bold">Start your GATE journey today!</h1>
+                <p>Practice on GateBoost to boost your GATE preparation and excel in GATE 2025.</p>
+                <a href="{% url 'accounts:register' %}" class="btn btn-primary rounded-pill">Create account ></a>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images/girlstudy.png' %}" class="img-fluid" alt="">
+        </div>
+    </div>
+</div>
+
+{% if not user.is_authenticated %}
+<div class="text-center text-primary my-5">
+    <h2>GATE BOOST</h2>
+</div>
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'images/img1.svg' %}" class="img-fluid mb-3">
+            <h2>Real Time Exam Simulation</h2>
+            <p>Mimics the actual exam environment, including a countdown timer, question navigation, and test-taking strategies.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'images/img2.svg' %}" class="img-fluid mb-3">
+            <h2>Practice and Revise Until You Excel</h2>
+            <p>Access mock tests, lecture notes, and practice sessions to reinforce your learning and improve technique.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'images/img3.svg' %}" class="img-fluid mb-3">
+            <h2>Detailed Performance Report</h2>
+            <p>Comprehensive test analysis with explanations, missed questions, and personalized improvement strategies.</p>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="text-center text-primary my-5">
+    <h2>Solution Provided by The Excellent Mentor</h2>
+</div> -->
+
+<!-- <div class="container">
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'images/img4.png' %}" class="img-fluid rounded-circle mb-3">
+            <h3>Bhagyashri Patil</h3>
+            <p>10+ years of teaching experience <br> AIR 10 in GATE 2025</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'images/img4.png' %}" class="img-fluid rounded-circle mb-3">
+            <h3>Vidya Patil</h3>
+            <p>5+ years of teaching experience <br> AIR 100 in GATE 2025</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'images/img4.png' %}" class="img-fluid rounded-circle mb-3">
+            <h3>Rudra Chaudhari</h3>
+            <p>15+ years of teaching experience <br> AIR 15 in GATE 2025</p>
+        </div>
+    </div>
+</div> -->
+{% endif %}
+
+<footer class="bg-light py-4 mt-5">
+    <div class="container text-center">
+        <img src="{% static 'images/logo.jpg' %}" class="img-fluid mb-3" style="max-height:60px;">
+        <h3 class="text-primary">GateBoost</h3>
+        <p class="text-muted">
+            GateBoost provides the boost to your GATE score. Our comprehensive mock tests and insightful reports pinpoint your weaknesses, allowing you to focus on improvement and achieve excellence.
+        </p>
+        <h5>Reach out to us</h5>
+        <p class="text-muted">Get solutions after practicing on GateBoost. For any queries:</p>
+        <div class="d-flex justify-content-center align-items-center">
+            <img src="{% static 'images/call.png' %}" height="20" class="mr-2">
+            <span>Call: +91 9876543210</span>
+            
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            
+            <span>Email: gateboostsite@gmail.com</span>
+            
+        </div>
+        
+    </div>
+</footer>
+
+<div class="bg-primary text-white text-center py-3">
+    ©2024 GateBoost. All Rights Reserved.
+</div>
+
+{% endblock %}

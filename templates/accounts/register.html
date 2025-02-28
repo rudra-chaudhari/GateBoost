@@ -1,0 +1,106 @@
+{% extends 'boost/base.html' %}
+{% load static %}
+{% block title %} Register {% endblock %}
+
+{% block head_extra %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row w-100">
+        <div class="col-12 col-md-10 col-lg-8 mx-auto">
+            <div class="card p-4 shadow rounded">
+                <div class="row align-items-center">
+                    
+                    <div class="col-md-6 d-none d-md-block">
+                        <img src="{% static 'images/studentlogin.jpg' %}" class="img-fluid rounded" alt="">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="text-center">
+                            <p class="h3">Create Account</p>
+                        </div>
+                        
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control rounded" id="email" placeholder="Enter Email" name="email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                {% if exists_text %}
+                                <p class="text-danger">{{ exists_text }}</p>
+                                {% endif %}
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control rounded" id="username" placeholder="Enter Username" name="username" required>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="fname" class="form-label">First name</label>
+                                    <input type="text" class="form-control rounded" id="fname" placeholder="Enter First name" name="fname" required>
+                                </div>
+                                <div class="col">
+                                    <label for="lname" class="form-label">Last name</label>
+                                    <input type="text" class="form-control rounded" id="lname" placeholder="Enter Last name" name="lname">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control rounded" id="password" placeholder="Create a password" name="password" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <select class="form-control rounded" name="year" required>
+                                    <option value="" disabled selected>Select year</option>
+                                    <option value="fy">First Year</option>
+                                    <option value="sy">Second Year</option>
+                                    <option value="ty">Third Year</option>
+                                    <option value="ly">Fourth Year</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <select class="form-control rounded" name="branch" required>
+                                    <option value="" disabled selected>Select branch</option>
+                                    <option value="CS">Computer Science and Information Technology</option>
+                                    <option value="EC">Electronics and Communication Engineering</option>
+                                    <option value="EE">Electrical Engineering</option>
+                                    <option value="ME">Mechanical Engineering</option>
+                                    <option value="CE">Civil Engineering</option>
+                                    <option value="DA">Data Science and Artificial Intelligence</option>
+                                    <option value="XE">General Sciences</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 d-grid">
+                                <input type="submit" class="btn btn-primary">
+                            </div>
+
+                            <div class="text-center">
+                                <small>Already on Gateboost? <a href="{% url 'accounts:login' %}">Login</a></small>
+                            </div>
+
+                            {% for message in messages %}
+                            <div class="alert alert-{{ message.level_tag }}">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

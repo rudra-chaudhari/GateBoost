@@ -1,0 +1,19 @@
+{% extends 'boost/base.html' %}
+{% load static %}
+
+{% block title %} Error {% endblock %}
+
+{% block head_extra %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="text-center">
+        <h1 class="text-danger">Error: {{ error }}</h1>
+        <a href="{% url 'boost:homepage' %}" class="btn btn-primary mt-3">Go Home</a>
+    </div>
+</div>
+
+{% endblock %}

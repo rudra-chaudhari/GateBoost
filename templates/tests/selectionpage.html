@@ -1,0 +1,125 @@
+{% extends 'boost/base.html' %}
+
+{% block title %} Select Test {% endblock %}
+
+{% block body_block %}
+
+<div class="container d-flex flex-column align-items-center min-vh-100">
+    <div class="text-center my-4">
+        <h1>Select Subject</h1>
+    </div>
+
+    {% for subject in Subjects %}
+    <div class="w-100 text-center">
+        <div class="border border-primary rounded p-4 mb-4 shadow-sm w-100 w-md-50 mx-auto">
+            <h3>{{ subject.subject_name }}</h3>
+            <button type="button" class="btn btn-primary mt-3" data-toggle="modal"
+                data-target="#myModal_{{ subject.subject_id }}">
+                Click here
+            </button>
+        </div>
+
+        <div class="modal fade" id="myModal_{{ subject.subject_id }}" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Select Filters</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'tests:test' %}" method="POST">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label for="subject_{{ subject.subject_id }}" class="form-label">Subject</label>
+                                <input type="text" readonly id="subject_{{ subject.subject_id }}" name="subject_name"
+                                    value="{{ subject.subject_name }}" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <p class="fw-bold">Choose difficulty (single/multiple)</p>
+                                <div class="form-check">
+                                    <input type="checkbox" id="easy_{{ subject.subject_id }}" value="easy"
+                                        name="difficulty" class="form-check-input">
+                                    <label for="easy_{{ subject.subject_id }}" class="form-check-label">Easy</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="medium_{{ subject.subject_id }}" value="medium"
+                                        name="difficulty" class="form-check-input">
+                                    <label for="medium_{{ subject.subject_id }}" class="form-check-label">Medium</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="hard_{{ subject.subject_id }}" value="hard"
+                                        name="difficulty" class="form-check-input">
+                                    <label for="hard_{{ subject.subject_id }}" class="form-check-label">Hard</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <p class="fw-bold">Choose type of questions</p>
+                                <div class="form-check">
+                                    <input type="checkbox" id="MCQ_{{ subject.subject_id }}" value="mcq"
+                                        name="question_type" class="form-check-input">
+                                    <label for="MCQ_{{ subject.subject_id }}" class="form-check-label">MCQ</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="MSQ_{{ subject.subject_id }}" value="msq"
+                                        name="question_type" class="form-check-input">
+                                    <label for="MSQ_{{ subject.subject_id }}" class="form-check-label">MSQ</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="NAT_{{ subject.subject_id }}" value="nat"
+                                        name="question_type" class="form-check-input">
+                                    <label for="NAT_{{ subject.subject_id }}" class="form-check-label">NAT</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <p class="fw-bold">Include previously incorrect questions?</p>
+                                <div class="form-check">
+                                    <input type="checkbox" id="prev_{{ subject.subject_id }}" value="include"
+                                        name="prev_include" class="form-check-input">
+                                    <label for="prev_{{ subject.subject_id }}" class="form-check-label">Include</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <p class="fw-bold">Choose type of test</p>
+                                <div class="form-check">
+                                    <input type="radio" id="smalltest_{{ subject.subject_id }}" value="small"
+                                        name="test_type" class="form-check-input">
+                                    <label for="smalltest_{{ subject.subject_id }}" class="form-check-label">
+                                        Small (15 questions, 30 minutes)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="mediumtest_{{ subject.subject_id }}" value="medium"
+                                        name="test_type" class="form-check-input">
+                                    <label for="mediumtest_{{ subject.subject_id }}" class="form-check-label">
+                                        Medium (30 questions, 60 minutes)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="largetest_{{ subject.subject_id }}" value="large"
+                                        name="test_type" class="form-check-input">
+                                    <label for="largetest_{{ subject.subject_id }}" class="form-check-label">
+                                        Large (65 questions, 180 minutes)
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <input type="submit" value="Apply" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
