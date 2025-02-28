@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#t9wa=gi2$d#@wruo*!z3i_q*^3@gai_*-)$pxlsps$!42d5h3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gateboost.onrender.com', 'localhost']
 
 
 # Application definition
